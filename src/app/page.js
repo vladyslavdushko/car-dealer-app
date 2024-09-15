@@ -1,5 +1,10 @@
-import Image from "next/image";
+import RootLayout from "./layout";
+import FilterPage from "./FilterPage";
 
 export default function Home() {
-  return <></>;
+  return (
+    <RootLayout>
+      <FilterPage />
+    </RootLayout>
+  );
 }
