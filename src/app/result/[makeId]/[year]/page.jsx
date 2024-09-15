@@ -1,6 +1,6 @@
-import Loader from "@/app/loader";
-import Link from "next/link";
-import React, { Suspense } from "react";
+import Loader from '@/app/Loader';
+import Link from 'next/link';
+import React, { Suspense } from 'react';
 
 async function getVehicleModels(makeId, year) {
   const res = await fetch(
@@ -8,14 +8,14 @@ async function getVehicleModels(makeId, year) {
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch vehicle models");
+    throw new Error('Failed to fetch vehicle models');
   }
 
   const data = await res.json();
 
   // Check if results are available
   if (!data.Results || data.Results.length === 0) {
-    throw new Error("No models found for the selected make and year.");
+    throw new Error('No models found for the selected make and year.');
   }
 
   return data.Results;
@@ -70,7 +70,7 @@ export default function ResultPage({ params }) {
 export async function generateStaticParams() {
   // Fetch the list of vehicle makes
   const res = await fetch(
-    "https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json"
+    'https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json'
   );
   const data = await res.json();
   const makes = data.Results;
@@ -81,7 +81,7 @@ export async function generateStaticParams() {
       const year = 2015 + i;
       return {
         makeId: String(make.MakeId),
-        year: String(year),
+        year: String(year)
       };
     });
   });
